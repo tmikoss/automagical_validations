@@ -1,12 +1,34 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
+require 'active_record'
 require 'automagical_validations'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
-RSpec.configure do |config|
-  
+ActiveRecord::Base.establish_connection(
+  :adapter => "sqlite3",
+  :database => "#{File.dirname(__FILE__)}/automagical_validations.db"
+)
+
+class Post < ActiveRecord::Base
+  def self.rebuild_table
+    ActiveRecord::Schema.define do
+      self.verbose = false
+
+      create_table :posts, :force => true do |t|
+        yield t
+      end
+    end
+
+    reset_column_information
+
+    # Reset all validators to prevent test cases from messing with each other
+    self._validators = columns.inject({}) do |memo, column|
+      memo[column.name.to_sym] = []
+      memo
+    end
+  end
 end
