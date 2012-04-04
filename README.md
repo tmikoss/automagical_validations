@@ -1,4 +1,4 @@
-#automagical_validations
+#automagical_validations [![Build Status](https://secure.travis-ci.org/tmikoss/automagical_validations.png)](http://travis-ci.org/tmikoss/automagical_validations)
 
 automagical_validations provides way to automatically apply validations to ActiveRecord models based on the information that can be inferred from database schema.
 
