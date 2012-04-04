@@ -37,7 +37,7 @@ describe "AutomagicalValidations" do
         Post.validators_on(:published_at).should be_empty
       end
     end
-    
+
     context "when column type is provided as string" do
       before(:all) do
         Post.rebuild_table do |t|
@@ -128,6 +128,26 @@ describe "AutomagicalValidations" do
 
         it "should not define additional validation" do
           Post.should have(1).validators_on(:title)
+        end
+      end
+
+      context "when explicit validation without maximum parameter is defined before automagical validation" do
+        before(:all) do
+          Post.rebuild_table do |t|
+            t.string  :title,   :limit => 20
+          end
+
+          Post.validates_length_of :title, :minimum => 10
+          Post.automagically_validate :string
+        end
+
+        it "should provide validation for max value" do
+          subject.title = "a"*21
+          subject.should_not be_valid
+        end
+
+        it "should define additional validation to take care of maximum length" do
+          Post.should have(2).validators_on(:title)
         end
       end
 

@@ -10,7 +10,9 @@ module AutomagicalValidations
       next unless column.limit
 
       # Do not define additional length validators if any are already in place
-      next if validators_on(column.name).any?{ |validator| validator.is_a? ActiveModel::Validations::LengthValidator }
+      next if validators_on(column.name).any? do |validator|
+        validator.is_a?(ActiveModel::Validations::LengthValidator) && validator.options[:maximum]
+      end
 
       validates_length_of column.name, :maximum => column.limit
     end
