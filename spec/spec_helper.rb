@@ -9,7 +9,7 @@ require 'automagical_validations'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 ActiveRecord::Base.establish_connection(
-  :adapter => "sqlite3",
+  :adapter => defined?(JRUBY_VERSION) ? "jdbcsqlite3": "sqlite3",
   :database => "#{File.dirname(__FILE__)}/automagical_validations.db"
 )
 
