@@ -1,5 +1,6 @@
 module AutomagicalValidations
   def automagically_validate(*types_to_validate)
+    return unless self.table_exists?
     types_to_validate.map!{ |type| type.to_sym }
 
     columns.each do |column|

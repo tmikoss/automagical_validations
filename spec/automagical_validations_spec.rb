@@ -3,6 +3,12 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe "AutomagicalValidations" do
   subject { Post.new }
 
+  context 'model without database table' do
+    it 'should be automagically validatable' do
+      expect { Comment.automagically_validate(:string, :text) }.to_not raise_error
+    end
+  end
+
   context "maximum length validator" do
     context "presence of validators" do
       before(:all) do
