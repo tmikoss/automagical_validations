@@ -40,3 +40,5 @@ class Post < ActiveRecord::Base
     end
   end
 end
+
+class Comment < ActiveRecord::Base; end
