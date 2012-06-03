@@ -31,4 +31,9 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
+desc 'Create database to run tests on'
+task :create_database do
+  `mysql -u root -e 'create database automagical_validations_test;'`
+end
+
 task :default => :spec

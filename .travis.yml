@@ -3,3 +3,5 @@ rvm:
   - 1.9.3
   - jruby
   - ree
+before_script:
+  - mysql -e 'create database automagical_validations_test;'

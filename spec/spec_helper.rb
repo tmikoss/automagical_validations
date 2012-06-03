@@ -8,18 +8,15 @@ require 'automagical_validations'
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
-database_file = "#{File.dirname(__FILE__)}/automagical_validations.db"
+database_properties = {
+  :adapter  => defined?(JRUBY_VERSION) ? "jdbcmysql" : "mysql2",
+  :host     => "localhost",
+  :username => "root",
+  :password => "",
+  :database => "automagical_validations_test"
+}
 
-ActiveRecord::Base.establish_connection(
-  :adapter => defined?(JRUBY_VERSION) ? "jdbcsqlite3": "sqlite3",
-  :database => database_file
-)
-
-RSpec.configure do |config|
-  config.after(:suite) do
-    File.delete(database_file)
-  end
-end
+ActiveRecord::Base.establish_connection database_properties
 
 class Post < ActiveRecord::Base
   def self.rebuild_table
