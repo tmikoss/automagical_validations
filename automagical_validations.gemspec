@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "automagical_validations"
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Toms Mikoss"]
-  s.date = "2012-06-03"
+  s.date = "2012-07-11"
   s.description = "ActiveRecord extension that allows to infer validation rules from database"
   s.email = "toms.mikoss@gmail.com"
   s.extra_rdoc_files = [
