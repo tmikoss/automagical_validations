@@ -29,7 +29,7 @@ If a maximum length validation already exists for column (for example, `automagi
 
 Add the following line to your `Gemfile`
 
-    gem "automagical_validations", "~> 0.1.0"
+    gem "automagical_validations", "~> 0.2.0"
 
 and run the `bundle install` command.
 
