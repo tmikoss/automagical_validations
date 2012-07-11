@@ -173,5 +173,26 @@ describe "AutomagicalValidations" do
         end
       end
     end
+
+    context "passing options to validator" do
+      let(:validator_options){ {:message => 'Custom message'} }
+
+      before(:all) do
+        Post.rebuild_table do |t|
+          t.string  :title
+          t.text    :content
+        end
+
+        Post.automagically_validate :string => validator_options
+      end
+
+      it "should define validator" do
+        Post.should have(1).validators_on(:title)
+      end
+
+      it "should define options for validator" do
+        Post.validators_on(:title).first.options[:message].should eq validator_options[:message]
+      end
+    end
   end
 end
