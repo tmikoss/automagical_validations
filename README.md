@@ -10,6 +10,12 @@ automagical_validations defines an `ActiveRecord::Base` class method that takes 
       automagically_validate :string, :text
     end
 
+Column types along with additional options can be passed in as a hash:
+
+    class Post < ActiveRecord::Base
+      automagically_validate :string => {:message => 'Custom message'}
+    end
+
 ##What it does
 ###Column maximum length validations
 
