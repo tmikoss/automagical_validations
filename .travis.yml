@@ -6,4 +6,3 @@ before_script:
   - mysql -e 'create database automagical_validations_test;'
 gemfile:
   - Gemfile
-  - gemfiles/activerecord_edge.gemfile
