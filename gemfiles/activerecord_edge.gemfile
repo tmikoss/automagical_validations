@@ -1,0 +1,10 @@
+source "http://rubygems.org"
+
+gem "activerecord", :git => "https://github.com/rails/rails/tree/master/activerecord"
+
+group :development do
+  gem "rspec"
+  gem "jeweler"
+  gem "mysql2", :platforms => :ruby
+  gem "activerecord-jdbcmysql-adapter", :platforms => :jruby
+end
