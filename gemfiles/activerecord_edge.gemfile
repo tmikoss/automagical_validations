@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "activerecord", :git => "https://github.com/rails/rails/tree/master/activerecord"
+gem "rails", :git => "https://github.com/rails/rails", :require => 'active_record'
 
 group :development do
   gem "rspec"
